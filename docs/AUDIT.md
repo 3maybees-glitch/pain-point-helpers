@@ -128,9 +128,19 @@ Sharing always upserts; the token is created once and kept. There is no “stop 
 
 `AppErrorComponent` is zinc/neutral, not paper/ink.
 
+### P3 — Narrow table columns clip sample text
+
+On Invoice chase tracker, “Northside PT” and “Call Tuesday 10am” overflow the cell inputs. Tables use a 36rem min-width with horizontal scroll; cells still clip.
+
 ### P3 — Category chips do not keep focus / scroll on mobile
 
 Long category rows wrap; fine, but there is no “jump to category” from the home page beyond the first six kits.
+
+### P2 — Production preview without Neon cannot boot PGLite
+
+`npm run preview` (built output, no `DATABASE_URL`) crashes: Nitro packs `@electric-sql/pglite` JS but not `pglite.data` / `pglite.wasm`. Dev works. A Vercel deploy with Neon never hits this path.
+
+**Needed:** set `DATABASE_URL` on deploy (already in the README). Do not rely on the WASM fallback in production.
 
 ### P3 — Unused platform modules
 
