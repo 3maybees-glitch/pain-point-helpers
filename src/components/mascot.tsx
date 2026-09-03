@@ -152,7 +152,7 @@ export function MascotTip({
   return (
     <aside
       className={cn(
-        "no-print flex items-end gap-3 rounded-2xl border border-line bg-wash/70 p-3 sm:items-center sm:gap-4 sm:p-4",
+        "no-print flex items-start gap-3 rounded-2xl border border-line bg-wash/70 p-3 sm:items-center sm:gap-4 sm:p-4",
         className,
       )}
     >

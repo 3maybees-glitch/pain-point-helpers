@@ -26,6 +26,9 @@ function Home() {
             Not “be more organized.” Stop reinventing this spreadsheet. Fill a kit or run a family, work, and life calc —
             then print a clean PDF, share it, or save it. Maybee, our house bee, explains every page.
           </p>
+          <MascotTip pose="wave" className="mt-6 max-w-xl bg-wash">
+            {PAGE_GUIDES.home}
+          </MascotTip>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link to="/helpers">
@@ -42,9 +45,6 @@ function Home() {
           </p>
         </div>
         <div className="relative">
-          <MascotTip pose="wave" size="lg" className="mb-4 bg-wash">
-            {PAGE_GUIDES.home}
-          </MascotTip>
           <div className="rounded-xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
             <div className="flex items-center justify-between border-b border-line pb-3">
               <div className="flex items-center gap-2">

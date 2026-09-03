@@ -147,7 +147,7 @@ export const CATEGORY_GUIDES: Record<string, string> = {
 };
 
 export const PAGE_GUIDES = {
-  home: "Hi — I’m Maybee. This is a drawer of fillable kits and family calculators. Pick a pain, fill the form, print a clean sheet, or save it under your account. I’ll sit next to each one and tell you what it’s for.",
+  home: "Hi — I’m Maybee. Pick a pain, fill the form, print a clean sheet, or save it. I’ll sit next to each kit and tell you what it’s for.",
   helpers:
     "Sixty-five kits. Search or tap a category. Some are forms you fill; the calcs do the math live as you type. I’ll meet you on every page.",
   helperFallback:
