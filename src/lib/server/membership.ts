@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/lib/auth/middleware";
 import { getSql } from "@/lib/db";
 import type { PlanId } from "@/lib/helpers/plans";
+import { parsePlanId } from "@/lib/server/guards";
 
 export type Membership = {
   plan: PlanId;
@@ -22,7 +23,7 @@ export const getMembership = createServerFn({ method: "GET" })
   });
 
 export const activateMembership = createServerFn({ method: "POST" })
-  .validator((plan: PlanId) => plan)
+  .validator((plan: PlanId) => parsePlanId(plan))
   .middleware([authMiddleware])
   .handler(async ({ context, data: plan }): Promise<Membership> => {
     const sql = await getSql();

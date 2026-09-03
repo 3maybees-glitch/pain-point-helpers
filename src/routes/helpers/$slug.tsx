@@ -85,6 +85,7 @@ function HelperPage() {
   }
 
   async function onSave() {
+    if (!ready) return;
     if (!user) {
       await navigate({ to: "/login", search: { redirect: `/helpers/${helper.id}` } });
       return;
@@ -112,6 +113,7 @@ function HelperPage() {
   }
 
   async function onShare() {
+    if (!ready) return;
     if (!isMember) {
       toast.error("All-access is required to share.");
       await navigate({ to: "/pricing" });
@@ -131,6 +133,7 @@ function HelperPage() {
   }
 
   function onPrint() {
+    if (!ready) return;
     if (!isMember) {
       toast.error("All-access is required to print.");
       void navigate({ to: "/pricing" });
@@ -161,14 +164,14 @@ function HelperPage() {
           <Sparkles className="size-4" />
           Fill sample
         </Button>
-        <Button type="button" variant="secondary" onClick={onPrint}>
+        <Button type="button" variant="secondary" onClick={onPrint} disabled={!ready}>
           <Printer className="size-4" />
           Print / PDF
         </Button>
         <Button type="button" variant="secondary" onClick={onEmail}>
           Email
         </Button>
-        <Button type="button" variant="secondary" onClick={onShare}>
+        <Button type="button" variant="secondary" onClick={onShare} disabled={!ready}>
           <Share2 className="size-4" />
           Copy share link
         </Button>
@@ -191,9 +194,11 @@ function HelperPage() {
         <HelperForm helper={helper} values={values} onChange={setValues} />
       </div>
 
-      <div className="mt-10 hidden print:block">
-        <PrintSheet helper={helper} values={values} />
-      </div>
+      {isMember ? (
+        <div className="mt-10 hidden print:block">
+          <PrintSheet helper={helper} values={values} />
+        </div>
+      ) : null}
     </div>
   );
 }

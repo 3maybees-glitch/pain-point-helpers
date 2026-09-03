@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mark } from "@/components/site-chrome";
+import { safeInternalPath } from "@/lib/safe-path";
 
 export const Route = createFileRoute("/login")({
   validateSearch: (s: Record<string, unknown>): { redirect?: string } => {
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/login")({
 function Login() {
   const { redirect } = Route.useSearch();
   const navigate = useNavigate();
-  const next = redirect && redirect.startsWith("/") ? redirect : "/library";
+  const next = safeInternalPath(redirect, "/library");
   const [mode, setMode] = useState<"in" | "up">("in");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

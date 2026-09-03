@@ -405,7 +405,7 @@ export const HELPERS: HelperDef[] = [
       { kind: "fields", fields: [date("day", "Filming day"), text("setup", "Setup"), num("pieces", "Pieces to leave with")] },
       { kind: "table", id: "shots", title: "Shots", minRows: 8,
         columns: [col("piece", "Piece"), col("hook", "Hook line"), col("broll", "B-roll"), col("got", "Got?")] },
-      checks("day", "Day-of", ["Cards empty", "Mic check", "Thumbnails stills", "Voice rest after"]),
+      checks("dayOf", "Day-of", ["Cards empty", "Mic check", "Thumbnails stills", "Voice rest after"]),
     ]),
 
   H(38, "sponsorship-rate-card", "creators", "Sponsorship rate card",
