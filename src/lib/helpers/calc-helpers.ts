@@ -487,15 +487,18 @@ export const CALC_HELPERS: HelperDef[] = [
     { age: "42", rule: "110" },
     assetAllocation),
 
-  H(64, "habit-leak", "Habit leak (coffee, lunch, smokes)",
-    "The quiet daily spend, times a decade, vs investing the same money. No lecture — just the receipt.",
+  H(64, "habit-leak", "Habit leak (coffee, lunch, vending machine for random snacks)",
+    "An $8–15 lunch, the vending machine for random snacks, the quiet coffee. Times a decade vs investing it. No lecture — just the receipt.",
     [
       { kind: "fields", fields: [
-        cash("daily", "Spend on the habit / day"), num("days", "Days / week"), num("years", "Years"), pct("rate", "If invested, return %"),
+        cash("daily", "Spend on the habit / day", { placeholder: "8–15 for a typical lunch" }),
+        num("days", "Days / week"),
+        num("years", "Years"),
+        pct("rate", "If invested, return %"),
       ] },
       { kind: "fields", fields: [area("habit", "What it is (so future-you remembers)")] },
     ],
-    { daily: "7.50", days: "5", years: "10", rate: "6", habit: "Workweek lunch out + afternoon coffee" },
+    { daily: "12", days: "5", years: "10", rate: "6", habit: "Workweek lunch out ($8–15) + vending machine for random snacks" },
     habitLeak),
 
   H(65, "lease-vs-buy", "Lease vs buy",

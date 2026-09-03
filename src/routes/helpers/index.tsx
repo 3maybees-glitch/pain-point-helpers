@@ -38,7 +38,7 @@ function HelpersIndex() {
         <Input
           type="search"
           value={draft}
-          placeholder="Search the drawer — invoice, sleep, school…"
+          placeholder="Search the drawer — mortgage, invoice, sleep…"
           autoComplete="off"
           onChange={(e) => {
             const next = e.target.value;
