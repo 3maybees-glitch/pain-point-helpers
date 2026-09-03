@@ -3,6 +3,8 @@ import { HELPER_BY_ID } from "@/lib/helpers/catalog";
 import { getSaveByToken } from "@/lib/server/saves";
 import { PrintSheet } from "@/components/print-sheet";
 import { Button } from "@/components/ui/button";
+import { MascotTip } from "@/components/mascot";
+import { PAGE_GUIDES, kitGuide } from "@/lib/helpers/guides";
 
 export const Route = createFileRoute("/s/$token")({
   loader: async ({ params }) => {
@@ -38,7 +40,11 @@ function SharedSave() {
   }
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
-      <p className="no-print text-xs uppercase tracking-widest text-accent">Shared helper</p>
+      <p className="no-print text-sm uppercase tracking-widest text-accent">Shared helper</p>
+      <h1 className="no-print mt-2 font-display text-3xl text-ink">{helper.title}</h1>
+      <MascotTip pose="wave" className="no-print mt-4">
+        {PAGE_GUIDES.share} {kitGuide(helper)}
+      </MascotTip>
       <div className="no-print mt-4 flex gap-2">
         <Button type="button" variant="secondary" onClick={() => window.print()}>
           Print / PDF

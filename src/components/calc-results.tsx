@@ -13,7 +13,7 @@ export function CalcResults({
   const rows = helper.compute(values);
   if (rows.length === 0) {
     return print ? null : (
-      <p className="text-sm text-subtle">Fill the numbers — the math shows up here.</p>
+      <p className="text-base text-subtle">Fill the numbers — the math shows up here.</p>
     );
   }
   return (
@@ -33,9 +33,9 @@ export function CalcResults({
 function ResultRow({ row, print }: { row: CalcResult; print?: boolean }) {
   return (
     <div className={print ? "" : "min-h-11"}>
-      <dt className={print ? "text-neutral-500" : "text-xs uppercase tracking-widest text-muted"}>{row.label}</dt>
-      <dd className={print ? "font-semibold" : "mt-0.5 font-display text-xl text-ink tabular-nums"}>{row.value}</dd>
-      {row.hint ? <p className={print ? "text-xs text-neutral-500" : "mt-1 text-xs text-subtle"}>{row.hint}</p> : null}
+      <dt className={print ? "text-neutral-500" : "text-sm uppercase tracking-widest text-muted"}>{row.label}</dt>
+      <dd className={print ? "font-semibold" : "mt-0.5 font-display text-2xl text-ink tabular-nums"}>{row.value}</dd>
+      {row.hint ? <p className={print ? "text-xs text-neutral-500" : "mt-1 text-base text-subtle"}>{row.hint}</p> : null}
     </div>
   );
 }

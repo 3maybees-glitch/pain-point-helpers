@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Printer, Save, Share2, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { HELPER_BY_ID, categoryOf } from "@/lib/helpers/catalog";
+import { kitGuide } from "@/lib/helpers/guides";
+import { MascotTip } from "@/components/mascot";
 import { emptyValues } from "@/lib/helpers/values";
 import type { FormValues } from "@/lib/helpers/types";
 import { loadDraft, saveDraft } from "@/lib/drafts";
@@ -150,14 +152,17 @@ function HelperPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 pb-36 lg:pb-28">
-      <p className="text-xs uppercase tracking-widest text-accent">
+      <p className="text-sm uppercase tracking-widest text-accent">
         {cat.label} · #{String(helper.n).padStart(2, "0")}
       </p>
       <div className="mt-2 flex flex-wrap items-start justify-between gap-3">
-        <h1 className="font-display text-3xl text-ink">{helper.title}</h1>
+        <h1 className="font-display text-3xl text-ink sm:text-4xl">{helper.title}</h1>
         <Badge tone="accent">{cat.kicker}</Badge>
       </div>
-      <p className="mt-3 text-muted">{helper.blurb}</p>
+      <p className="mt-3 text-lg text-muted">{helper.blurb}</p>
+      <MascotTip pose={helper.compute ? "explain" : "wave"} className="mt-5">
+        {kitGuide(helper)}
+      </MascotTip>
 
       <div className="no-print mt-6 flex flex-wrap gap-2">
         <Button type="button" variant="secondary" onClick={fillSample}>
@@ -181,7 +186,7 @@ function HelperPage() {
         </Button>
       </div>
       {!isMember ? (
-        <p className="no-print mt-3 text-sm text-subtle">
+        <p className="no-print mt-3 text-base text-subtle">
           Filling is free. Saving, printing, and sharing need{" "}
           <Link to="/pricing" className="text-accent underline-offset-2 hover:underline">
             all-access

@@ -4,7 +4,8 @@ import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/clie
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mark } from "@/components/site-chrome";
+import { MaybeeFace, MascotTip } from "@/components/mascot";
+import { PAGE_GUIDES } from "@/lib/helpers/guides";
 import { safeInternalPath } from "@/lib/safe-path";
 
 export const Route = createFileRoute("/login")({
@@ -50,13 +51,15 @@ function Login() {
   return (
     <main className="mx-auto grid max-w-md px-4 py-16">
       <div className="flex items-center gap-2">
-        <Mark className="size-8" />
-        <h1 className="font-display text-2xl text-ink">Sign in</h1>
+        <MaybeeFace className="size-10" />
+        <h1 className="font-display text-3xl text-ink">Sign in</h1>
       </div>
-      <p className="mt-2 text-sm text-muted">Save filled helpers, print, and share from your library.</p>
+      <MascotTip pose="wave" size="sm" className="mt-5">
+        {PAGE_GUIDES.login}
+      </MascotTip>
 
       {!authEnabled ? (
-        <p className="mt-6 text-sm text-muted">Sign-in is disabled.</p>
+        <p className="mt-6 text-base text-muted">Sign-in is disabled.</p>
       ) : (
         <>
           <div className="mt-8 grid gap-3">
@@ -66,7 +69,7 @@ function Login() {
               </Button>
             ))}
           </div>
-          <p className="my-6 text-center text-xs uppercase tracking-widest text-subtle">or email</p>
+          <p className="my-6 text-center text-sm uppercase tracking-widest text-subtle">or email</p>
           <form className="grid gap-3" onSubmit={onEmail}>
             {mode === "up" ? (
               <div>
@@ -82,21 +85,21 @@ function Login() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" className="mt-1.5" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={mode === "up" ? "new-password" : "current-password"} />
             </div>
-            {error ? <p className="text-sm text-mark">{error}</p> : null}
+            {error ? <p className="text-base text-mark">{error}</p> : null}
             <Button type="submit" disabled={busy}>
               {busy ? "Working…" : mode === "up" ? "Create account" : "Sign in"}
             </Button>
           </form>
           <button
             type="button"
-            className="mt-4 text-sm text-muted underline-offset-2 hover:text-ink hover:underline"
+            className="mt-4 text-base text-muted underline-offset-2 hover:text-ink hover:underline"
             onClick={() => setMode(mode === "up" ? "in" : "up")}
           >
             {mode === "up" ? "Already have an account? Sign in" : "Need an account? Create one"}
           </button>
         </>
       )}
-      <p className="mt-8 text-sm text-subtle">
+      <p className="mt-8 text-base text-subtle">
         <Link to="/" className="underline-offset-2 hover:underline">
           Back home
         </Link>
