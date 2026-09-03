@@ -2,7 +2,7 @@
 
 **Date:** 3 September 2026  
 **Scope:** current `main` (commit `d09a214`) plus the fixes in this change  
-**Product:** 50 fillable life / work / family kits. Fill online, print a PDF, share a link, or save under an account. All-access is $19 / mo · $99 / yr · $249 lifetime.
+**Product:** 50 fillable life / work / family kits. Fill online, print a PDF, share a link, or save under an account. All-access is $5 / mo · $25 / yr · $59 lifetime.
 
 This is a launch-readiness audit: security, paywall integrity, data, product completeness, and UX. It is not a Stripe or legal review.
 
