@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { UserButton } from "@/lib/auth/gates";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { Button } from "@/components/ui/button";
+import { MaybeeFace } from "@/components/mascot";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -39,17 +40,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="no-print sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-sm">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
         <Link to="/" className="flex items-center gap-2.5">
-          <Mark className="size-8" />
-          <span className="font-display text-lg tracking-tight text-ink">Pain Point Helpers</span>
+          <MaybeeFace className="size-10" />
+          <span className="font-display text-xl tracking-tight text-ink">Pain Point Helpers</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className="rounded-md px-3 py-2 text-sm text-muted hover:bg-ink/5 hover:text-ink"
+              className="rounded-md px-3 py-2 text-base text-muted hover:bg-ink/5 hover:text-ink"
             >
               {item.label}
             </Link>
@@ -79,7 +80,7 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-md px-3 py-3 text-sm text-ink hover:bg-ink/5"
+                className="rounded-md px-3 py-3 text-base text-ink hover:bg-ink/5"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -100,10 +101,10 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="no-print border-t border-line py-10 text-sm text-muted">
+    <footer className="no-print border-t border-line py-10 text-base text-muted">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between">
         <p>Pain Point Helpers · Maybee Creations</p>
-        <p>Fill online. Print a clean sheet. Keep a library.</p>
+        <p>Maybee walks you through each kit. Fill, print, keep.</p>
       </div>
     </footer>
   );

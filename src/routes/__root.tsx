@@ -13,7 +13,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: APP_NAME },
-      { name: "description", content: "Fillable life, work, and family kits plus retirement, savings, and mortgage calculators. Fill online, print, share, or save." },
+      { name: "description", content: "Meet Maybee. Fillable life, work, and family kits plus retirement, savings, and mortgage calculators. Fill online, print, share, or save." },
       { name: "theme-color", content: "#2F4A40" },
     ],
     links: [

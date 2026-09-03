@@ -33,7 +33,7 @@ function FieldControl({
     return (
       <select
         id={field.id}
-        className="h-11 w-full rounded-md border border-line bg-surface px-3 text-sm"
+        className="h-12 w-full rounded-md border border-line bg-surface px-3 text-base"
         value={common.value}
         onChange={(e) => onChange(e.target.value)}
       >
@@ -66,7 +66,7 @@ function FieldsBlock({
 }) {
   return (
     <section className="grid gap-4">
-      {title ? <h3 className="font-display text-lg text-ink">{title}</h3> : null}
+      {title ? <h3 className="font-display text-xl text-ink">{title}</h3> : null}
       <div className="grid gap-4 sm:grid-cols-2">
         {fields.map((f) => (
           <div key={f.id} className={f.span === 2 ? "sm:col-span-2" : ""}>
@@ -96,7 +96,7 @@ function TableBlock({
   return (
     <section className="grid gap-3">
       <div className="flex items-end justify-between gap-3">
-        <h3 className="font-display text-lg text-ink">{block.title}</h3>
+        <h3 className="font-display text-xl text-ink">{block.title}</h3>
         <Button
           type="button"
           variant="secondary"
@@ -111,7 +111,7 @@ function TableBlock({
         </Button>
       </div>
       <div className="overflow-x-auto rounded-md border border-line">
-        <table className="w-full min-w-[36rem] text-left text-sm">
+        <table className="w-full min-w-[36rem] text-left text-base">
           <thead className="bg-wash/60 text-muted">
             <tr>
               {block.columns.map((c) => (
@@ -152,7 +152,7 @@ function TableBlock({
         </table>
       </div>
       {total != null ? (
-        <p className="text-right text-sm font-medium tabular-nums text-ink">
+        <p className="text-right text-base font-medium tabular-nums text-ink">
           Total {formatMoneyExact(total)}
         </p>
       ) : null}
@@ -185,11 +185,11 @@ export function HelperForm({
           const map = checksMap(values, block.id);
           return (
             <section key={block.id} className="grid gap-3">
-              <h3 className="font-display text-lg text-ink">{block.title}</h3>
+              <h3 className="font-display text-xl text-ink">{block.title}</h3>
               <ul className="grid gap-2">
                 {block.items.map((item) => (
                   <li key={item.id}>
-                    <label className="flex min-h-11 items-center gap-3 text-sm">
+                    <label className="flex min-h-11 items-center gap-3 text-base">
                       <input
                         type="checkbox"
                         className="size-4 accent-accent"
@@ -209,8 +209,8 @@ export function HelperForm({
         if (block.kind === "prompts") {
           return (
             <section key={i} className="rounded-lg border border-line bg-surface p-4">
-              <h3 className="font-display text-lg text-ink">{block.title}</h3>
-              <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm text-muted">
+              <h3 className="font-display text-xl text-ink">{block.title}</h3>
+              <ol className="mt-3 list-decimal space-y-2 pl-5 text-base text-muted">
                 {block.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -219,7 +219,7 @@ export function HelperForm({
           );
         }
         return (
-          <p key={i} className="text-sm text-muted">
+          <p key={i} className="text-base text-muted">
             {block.body}
           </p>
         );

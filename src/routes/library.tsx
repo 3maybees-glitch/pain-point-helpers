@@ -6,6 +6,8 @@ import { useMembership } from "@/hooks/use-membership";
 import { Button } from "@/components/ui/button";
 import { RedirectToSignIn } from "@/lib/auth/gates";
 import { toast } from "sonner";
+import { PAGE_GUIDES } from "@/lib/helpers/guides";
+import { MascotTip } from "@/components/mascot";
 
 export const Route = createFileRoute("/library")({ component: Library });
 
@@ -26,9 +28,12 @@ function Library() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 pb-28">
       <h1 className="font-display text-4xl text-ink">My library</h1>
-      <p className="mt-2 text-muted">Filled helpers saved under this account.</p>
+      <p className="mt-2 text-lg text-muted">Filled helpers saved under this account.</p>
+      <MascotTip pose="think" className="mt-6">
+        {PAGE_GUIDES.library}
+      </MascotTip>
       {!isMember ? (
-        <p className="mt-4 text-sm">
+        <p className="mt-4 text-base">
           All-access is off.{" "}
           <Link to="/pricing" className="text-accent underline-offset-2 hover:underline">
             Unlock saving
@@ -41,7 +46,7 @@ function Library() {
         <p className="mt-8 text-muted">Loading…</p>
       ) : rows.length === 0 ? (
         <div className="mt-10 rounded-xl border border-dashed border-line p-8 text-center">
-          <p className="text-muted">Nothing saved yet.</p>
+          <p className="text-lg text-muted">{PAGE_GUIDES.libraryEmpty}</p>
           <Button asChild className="mt-4">
             <Link to="/helpers">Browse the kits</Link>
           </Button>
@@ -61,7 +66,7 @@ function Library() {
                   >
                     {row.title}
                   </Link>
-                  <p className="text-xs text-subtle">
+                  <p className="text-base text-subtle">
                     {helper ? `#${String(helper.n).padStart(2, "0")}` : row.helperId} · updated {row.updatedAt.slice(0, 10)}
                   </p>
                 </div>

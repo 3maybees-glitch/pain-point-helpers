@@ -1,8 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { CATEGORIES, HELPERS } from "@/lib/helpers/catalog";
+import { PAGE_GUIDES, categoryGuide } from "@/lib/helpers/guides";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { MascotTip } from "@/components/mascot";
 
 export const Route = createFileRoute("/helpers/")({
   validateSearch: (s: Record<string, unknown>): { cat?: string; q?: string } => {
@@ -27,11 +29,14 @@ function HelpersIndex() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 pb-28">
-      <p className="text-xs font-medium uppercase tracking-widest text-accent">The drawer</p>
+      <p className="text-sm font-medium uppercase tracking-widest text-accent">The drawer</p>
       <h1 className="mt-2 font-display text-4xl text-ink">The kits</h1>
-      <p className="mt-3 max-w-xl text-muted">
+      <p className="mt-3 max-w-2xl text-lg text-muted">
         {HELPERS.length} fillable kits and family, work, and life calcs. Fill it, print it, keep it.
       </p>
+      <MascotTip pose="explain" className="mt-6 max-w-3xl">
+        {PAGE_GUIDES.helpers}
+      </MascotTip>
 
       <label className="mt-6 block max-w-md">
         <span className="sr-only">Search helpers</span>
@@ -55,7 +60,7 @@ function HelpersIndex() {
         <Link
           to="/helpers"
           search={{ q }}
-          className={`rounded-full px-3 py-2 text-sm ${!cat ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
+          className={`rounded-full px-3.5 py-2 text-base ${!cat ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
         >
           All
         </Link>
@@ -64,7 +69,7 @@ function HelpersIndex() {
             key={c.id}
             to="/helpers"
             search={{ cat: c.id, q }}
-            className={`rounded-full px-3 py-2 text-sm ${cat === c.id ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
+            className={`rounded-full px-3.5 py-2 text-base ${cat === c.id ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
           >
             {c.label}
           </Link>
@@ -79,8 +84,9 @@ function HelpersIndex() {
             <section key={c.id}>
               <div className="mb-4 flex items-baseline justify-between gap-3">
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-accent">{c.kicker}</p>
+                  <p className="text-sm uppercase tracking-widest text-accent">{c.kicker}</p>
                   <h2 className="font-display text-2xl text-ink">{c.label}</h2>
+                  <p className="mt-1 max-w-xl text-base text-muted">{categoryGuide(c.id)}</p>
                 </div>
                 <Badge>{c.range}</Badge>
               </div>
@@ -92,9 +98,9 @@ function HelpersIndex() {
                     params={{ slug: h.id }}
                     className="rounded-xl border border-line bg-surface p-4 hover:border-line-strong"
                   >
-                    <p className="text-xs text-subtle">{String(h.n).padStart(2, "0")}</p>
-                    <h3 className="mt-1 font-display text-lg text-ink">{h.title}</h3>
-                    <p className="mt-1 text-sm text-muted">{h.blurb}</p>
+                    <p className="text-sm text-subtle">{String(h.n).padStart(2, "0")}</p>
+                    <h3 className="mt-1 font-display text-xl text-ink">{h.title}</h3>
+                    <p className="mt-1 text-base text-muted">{h.blurb}</p>
                   </Link>
                 ))}
               </div>

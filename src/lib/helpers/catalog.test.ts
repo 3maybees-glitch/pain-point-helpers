@@ -1,6 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { CATEGORIES, HELPERS } from "./catalog.ts";
+import { CATEGORY_GUIDES, KIT_GUIDES } from "./guides.ts";
 import type { HelperDef } from "./types.ts";
 
 function valueKeys(helper: HelperDef): string[] {
@@ -58,6 +59,15 @@ describe("helper catalog", () => {
         rows.every((r) => r.value && r.value !== "—" && !r.value.includes("NaN")),
         helper.id,
       );
+    }
+  });
+
+  it("gives Maybee a guide for every kit and category", () => {
+    for (const helper of HELPERS) {
+      assert.ok(KIT_GUIDES[helper.id]?.length, helper.id);
+    }
+    for (const cat of CATEGORIES) {
+      assert.ok(CATEGORY_GUIDES[cat.id]?.length, cat.id);
     }
   });
 
