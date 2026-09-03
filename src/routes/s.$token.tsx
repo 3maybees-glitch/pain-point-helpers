@@ -6,8 +6,12 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/s/$token")({
   loader: async ({ params }) => {
-    const row = await getSaveByToken({ data: params.token });
-    return { row };
+    try {
+      const row = await getSaveByToken({ data: params.token });
+      return { row };
+    } catch {
+      return { row: null };
+    }
   },
   component: SharedSave,
 });

@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { CATEGORIES, HELPERS } from "@/lib/helpers/catalog";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/helpers/")({
   validateSearch: (s: Record<string, unknown>): { cat?: string; q?: string } => {
@@ -14,7 +16,9 @@ export const Route = createFileRoute("/helpers/")({
 
 function HelpersIndex() {
   const { cat, q } = Route.useSearch();
-  const query = (q ?? "").trim().toLowerCase();
+  const navigate = useNavigate();
+  const [draft, setDraft] = useState(q ?? "");
+  const query = draft.trim().toLowerCase();
   const list = HELPERS.filter((h) => {
     if (cat && h.category !== cat) return false;
     if (!query) return true;
@@ -27,10 +31,28 @@ function HelpersIndex() {
       <h1 className="mt-2 font-display text-4xl text-ink">The 50</h1>
       <p className="mt-3 max-w-xl text-muted">Each one deletes a specific Sunday-night task. Fill it, print it, keep it.</p>
 
+      <label className="mt-6 block max-w-md">
+        <span className="sr-only">Search helpers</span>
+        <Input
+          type="search"
+          value={draft}
+          placeholder="Search the drawer — invoice, sleep, school…"
+          autoComplete="off"
+          onChange={(e) => {
+            const next = e.target.value;
+            setDraft(next);
+            void navigate({
+              to: "/helpers",
+              search: { cat, q: next.trim() ? next : undefined },
+            });
+          }}
+        />
+      </label>
+
       <div className="mt-6 flex flex-wrap gap-2">
         <Link
           to="/helpers"
-          search={{}}
+          search={{ q }}
           className={`rounded-full px-3 py-2 text-sm ${!cat ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
         >
           All
@@ -39,7 +61,7 @@ function HelpersIndex() {
           <Link
             key={c.id}
             to="/helpers"
-            search={{ cat: c.id }}
+            search={{ cat: c.id, q }}
             className={`rounded-full px-3 py-2 text-sm ${cat === c.id ? "bg-accent text-accent-fg" : "bg-ink/5 text-muted hover:text-ink"}`}
           >
             {c.label}
@@ -78,6 +100,9 @@ function HelpersIndex() {
           );
         })}
       </div>
+      {list.length === 0 ? (
+        <p className="mt-10 text-muted">Nothing in the drawer matches that. Try another word, or clear search.</p>
+      ) : null}
     </div>
   );
 }

@@ -69,6 +69,7 @@ function Library() {
                   variant="ghost"
                   size="sm"
                   onClick={async () => {
+                    if (!window.confirm(`Delete “${row.title}”? This cannot be undone.`)) return;
                     await deleteSave({ data: row.id });
                     setRows((prev) => (prev ?? []).filter((r) => r.id !== row.id));
                     toast.success("Removed");

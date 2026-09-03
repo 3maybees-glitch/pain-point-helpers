@@ -2,6 +2,14 @@ import { createServerFn } from "@tanstack/react-start";
 import { authMiddleware } from "@/lib/auth/middleware";
 import { getSql } from "@/lib/db";
 import type { FormValues, Json } from "@/lib/helpers/types";
+import {
+  assertHelperId,
+  assertShareToken,
+  newShareToken,
+  normalizeSaveId,
+  normalizeSaveTitle,
+  serializeSaveValues,
+} from "@/lib/server/guards";
 
 export type SaveRow = {
   id: string;
@@ -90,12 +98,14 @@ export const upsertSave = createServerFn({ method: "POST" })
     if (!memberRows[0] || memberRows[0].status !== "active") {
       throw new Error("All-access required to save");
     }
-    const id = data.id ?? crypto.randomUUID();
-    const token = crypto.randomUUID().replace(/-/g, "").slice(0, 12);
-    const payload = JSON.stringify(data.values);
+    const helperId = assertHelperId(data.helperId);
+    const title = normalizeSaveTitle(data.title);
+    const id = normalizeSaveId(data.id);
+    const token = newShareToken();
+    const payload = serializeSaveValues(data.values);
     await sql`
       insert into helper_saves (id, user_id, helper_id, title, values_json, share_token, updated_at)
-      values (${id}, ${context.userId}, ${data.helperId}, ${data.title}, ${payload}::jsonb, ${token}, now())
+      values (${id}, ${context.userId}, ${helperId}, ${title}, ${payload}::jsonb, ${token}, now())
       on conflict (id) do update set
         title = excluded.title,
         values_json = excluded.values_json,
@@ -105,13 +115,16 @@ export const upsertSave = createServerFn({ method: "POST" })
     const rows = await sql<{ share_token: string | null; updated_at: string }>`
       select share_token, updated_at::text from helper_saves where id = ${id} and user_id = ${context.userId}
     `;
+    if (!rows[0]) {
+      throw new Error("Could not save that helper");
+    }
     return {
       id,
-      helperId: data.helperId,
-      title: data.title,
+      helperId,
+      title,
       values: data.values,
-      shareToken: rows[0]?.share_token ?? token,
-      updatedAt: rows[0]?.updated_at ?? new Date().toISOString(),
+      shareToken: rows[0].share_token ?? token,
+      updatedAt: rows[0].updated_at,
     };
   });
 
@@ -124,7 +137,7 @@ export const deleteSave = createServerFn({ method: "POST" })
   });
 
 export const getSaveByToken = createServerFn({ method: "GET" })
-  .validator((token: string) => token)
+  .validator((token: string) => assertShareToken(token))
   .handler(async ({ data: token }): Promise<SaveRow | null> => {
     const sql = await getSql();
     const rows = await sql<{
