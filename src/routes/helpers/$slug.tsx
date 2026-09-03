@@ -72,7 +72,7 @@ function HelperPage() {
       <main className="mx-auto max-w-xl px-4 py-16">
         <h1 className="font-display text-2xl">That helper isn’t in the drawer.</h1>
         <Button asChild className="mt-6">
-          <Link to="/helpers">Back to the 50</Link>
+          <Link to="/helpers">Back to the kits</Link>
         </Button>
       </main>
     );

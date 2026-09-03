@@ -1,7 +1,9 @@
 import type { Block, CategoryMeta, Field, FormValues, HelperDef, TableCol } from "./types";
+import { CALC_CATEGORY, CALC_HELPERS } from "./calc-helpers.ts";
 
 export const CATEGORIES: CategoryMeta[] = [
   { id: "money", label: "Money & adulting", kicker: "January-proof", range: "01–06" },
+  CALC_CATEGORY,
   { id: "freelance", label: "Freelance & solopreneur", kicker: "Stop the 11pm scramble", range: "07–13" },
   { id: "profession", label: "Niche profession OS", kicker: "Specificity is the price", range: "14–22" },
   { id: "health", label: "Health, food, body", kicker: "Bought at 11pm", range: "23–28" },
@@ -524,6 +526,7 @@ export const HELPERS: HelperDef[] = [
       checks("ship", "Ship gate", ["Numbers verified", "Names spelled", "Their words not ours", "PDF/print looks right", "You would sign it"]),
     ],
     { deliverable: "Q1 one-pager", client: "Internal" }),
+  ...CALC_HELPERS,
 ];
 
 export const HELPER_BY_ID: Record<string, HelperDef> = Object.fromEntries(HELPERS.map((h) => [h.id, h]));

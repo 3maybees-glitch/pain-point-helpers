@@ -28,15 +28,17 @@ function HelpersIndex() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 pb-28">
       <p className="text-xs font-medium uppercase tracking-widest text-accent">The drawer</p>
-      <h1 className="mt-2 font-display text-4xl text-ink">The 50</h1>
-      <p className="mt-3 max-w-xl text-muted">Each one deletes a specific Sunday-night task. Fill it, print it, keep it.</p>
+      <h1 className="mt-2 font-display text-4xl text-ink">The kits</h1>
+      <p className="mt-3 max-w-xl text-muted">
+        {HELPERS.length} fillable kits and family, work, and life calcs. Fill it, print it, keep it.
+      </p>
 
       <label className="mt-6 block max-w-md">
         <span className="sr-only">Search helpers</span>
         <Input
           type="search"
           value={draft}
-          placeholder="Search the drawer — invoice, sleep, school…"
+          placeholder="Search the drawer — mortgage, invoice, sleep…"
           autoComplete="off"
           onChange={(e) => {
             const next = e.target.value;

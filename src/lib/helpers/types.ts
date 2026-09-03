@@ -40,6 +40,13 @@ export type CategoryMeta = {
   range: string;
 };
 
+export type CalcResult = {
+  id: string;
+  label: string;
+  value: string;
+  hint?: string;
+};
+
 export type HelperDef = {
   id: string;
   n: number;
@@ -49,4 +56,5 @@ export type HelperDef = {
   identity?: Field[];
   blocks: Block[];
   sample: FormValues;
+  compute?: (values: FormValues) => CalcResult[];
 };

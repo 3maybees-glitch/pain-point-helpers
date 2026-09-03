@@ -33,7 +33,7 @@ function Pricing() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 pb-28">
       <p className="text-xs font-medium uppercase tracking-widest text-accent">All-access</p>
-      <h1 className="mt-2 max-w-xl font-display text-4xl text-ink">One membership. All fifty kits.</h1>
+      <h1 className="mt-2 max-w-xl font-display text-4xl text-ink">One membership. Every kit and calc.</h1>
       <p className="mt-4 max-w-xl text-muted">
         Fill any helper online, print a clean PDF, share a link, or keep a library. Sold one-by-one the drawer is $
         {SOLO_BUNDLE_VALUE.toLocaleString()}+.

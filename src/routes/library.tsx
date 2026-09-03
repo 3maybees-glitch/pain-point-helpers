@@ -43,7 +43,7 @@ function Library() {
         <div className="mt-10 rounded-xl border border-dashed border-line p-8 text-center">
           <p className="text-muted">Nothing saved yet.</p>
           <Button asChild className="mt-4">
-            <Link to="/helpers">Browse the 50</Link>
+            <Link to="/helpers">Browse the kits</Link>
           </Button>
         </div>
       ) : (
