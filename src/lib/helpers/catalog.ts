@@ -443,7 +443,7 @@ export const HELPERS: HelperDef[] = [
         columns: [col("piece", "Piece"), col("why", "Why it belongs"), col("solo", "Solo value", "currency")] },
       { kind: "fields", fields: [area("notFor", "Not for"), area("guarantee", "Guarantee")] },
     ],
-    { name: "All-access Pain Point Helpers", price: "99", promise: "Stop reinventing the spreadsheet every Sunday" }),
+    { name: "All-access Pain Point Helpers", price: "25", promise: "Stop reinventing the spreadsheet every Sunday" }),
 
   H(42, "audience-research-notes", "creators", "Audience research notes",
     "Ten real comments/emails. The words they use. The product that deletes that sentence.",
