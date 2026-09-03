@@ -2,6 +2,7 @@ import { formatMoneyExact, parseMoney } from "@/lib/utils";
 import type { FormValues, HelperDef } from "@/lib/helpers/types";
 import { categoryOf } from "@/lib/helpers/catalog";
 import { checksMap, tableRows, sumColumn } from "@/lib/helpers/values";
+import { CalcResults } from "@/components/calc-results";
 
 export function PrintSheet({
   helper,
@@ -123,6 +124,7 @@ export function PrintSheet({
           </p>
         );
       })}
+      <CalcResults helper={helper} values={values} print />
     </article>
   );
 }

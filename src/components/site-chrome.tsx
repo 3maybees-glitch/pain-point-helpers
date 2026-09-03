@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { to: "/helpers", label: "The 50" },
+  { to: "/helpers", label: "The kits" },
   { to: "/pricing", label: "All-access" },
   { to: "/library", label: "My library" },
 ];

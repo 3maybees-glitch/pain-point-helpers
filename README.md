@@ -1,6 +1,6 @@
 # Pain Point Helpers
 
-Fifty fillable life, work, and family templates. Fill online, print a clean PDF, share a link, or save under an account.
+Fillable life, work, and family templates plus retirement, savings, and mortgage calculators. Fill online, print a clean PDF, share a link, or save under an account.
 
 **All-access:** $5 / month · $25 / year · $59 lifetime
 

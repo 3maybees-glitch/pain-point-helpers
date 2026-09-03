@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { CalcResults } from "@/components/calc-results";
 
 function setAt(values: FormValues, id: string, next: Json): FormValues {
   return { ...values, [id]: next };
@@ -223,6 +224,7 @@ export function HelperForm({
           </p>
         );
       })}
+      <CalcResults helper={helper} values={values} />
     </div>
   );
 }

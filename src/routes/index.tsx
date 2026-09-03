@@ -9,23 +9,25 @@ import { Mark } from "@/components/site-chrome";
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  const featured = HELPERS.slice(0, 6);
+  const featured = [...HELPERS.slice(0, 4), ...HELPERS.filter((h) => h.category === "calcs").slice(0, 2)];
   return (
     <div>
       <section className="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-20 lg:pb-28">
         <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-accent">Fifty kits. One membership.</p>
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            {HELPERS.length} kits. One membership.
+          </p>
           <h1 className="mt-4 max-w-xl font-display text-4xl leading-tight text-ink sm:text-5xl">
             Pain-point products sell because they delete a task.
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted">
-            Not “be more organized.” Not “learn marketing.” Stop reinventing this spreadsheet every Sunday. Fill it
-            online, print a clean PDF, share it, or save it under your account.
+            Not “be more organized.” Not “learn marketing.” Stop reinventing this spreadsheet every Sunday. Fill a kit
+            or run a family, work, and life calc — then print a clean PDF, share it, or save it under your account.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg">
               <Link to="/helpers">
-                Browse the 50
+                Browse the drawer
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -44,7 +46,7 @@ function Home() {
                 <Mark className="size-7" />
                 <span className="font-display text-ink">Sinking-funds + bill calendar</span>
               </div>
-              <Badge tone="accent">01 / 50</Badge>
+              <Badge tone="accent">01 / {String(HELPERS.length).padStart(2, "0")}</Badge>
             </div>
             <dl className="mt-4 grid gap-3 text-sm">
               <div className="flex justify-between border-b border-dotted border-line pb-2">
@@ -94,7 +96,7 @@ function Home() {
             <h2 className="mt-2 font-display text-3xl text-ink">Start with a specific pain.</h2>
           </div>
           <Button asChild variant="secondary">
-            <Link to="/helpers">All 50</Link>
+            <Link to="/helpers">All kits</Link>
           </Button>
         </div>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
